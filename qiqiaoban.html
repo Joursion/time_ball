@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<script>
+
+    //params  起点，line，终点
+    var gram = [
+        {p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color: "#caff67"},
+        {p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color: "#67beef"},
+        {p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color: "#ef3d61"},
+        {p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color: "#f9f51a"},
+        {p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color: "#a594c0"},
+        {p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color: "#fa8ccc"},
+        {p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color: "#fe6ca29"}
+    ];
+
+    window.onload = function () {
+
+        var canvas = document.querySelector('#canvas');
+        canvas.width = 1024;
+        canvas.height = 800;
+        var context = canvas.getContext("2d");
+        console.log(gram.length);
+        for (var i = 0; i < gram.length; i ++) {
+            draw(gram[i], context);
+            console.log(gram[i]);
+        }
+    };
+
+    function draw(piece, context) {
+        context.beginPath();
+        context.moveTo(piece.p[0].x,piece.p[0].y);
+        for( var i = 1; i < piece.p.length; i ++) {
+            context.lineTo(piece.p[i].x, piece.p[i].y);
+        }
+
+        context.fillStyle = piece.color;
+        context.fill();
+    }
+
+</script>
+</body>
+</html>
